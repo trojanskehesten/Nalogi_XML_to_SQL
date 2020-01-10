@@ -38,7 +38,13 @@ SET @Batch =
 	[СумУплНал] money NULL,
 	[Файл] [varchar](256) NULL,
 	CONSTRAINT [PK_' + @table_name + '] PRIMARY KEY CLUSTERED 
-	( [УникНомер] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	( [УникНомер] ASC) WITH 
+		(PAD_INDEX = OFF
+		, STATISTICS_NORECOMPUTE = OFF
+		, IGNORE_DUP_KEY = OFF
+		, ALLOW_ROW_LOCKS = ON
+		, ALLOW_PAGE_LOCKS = ON
+		) ON [PRIMARY]
 ) ON [PRIMARY];';
 
 BEGIN TRY
@@ -46,7 +52,8 @@ BEGIN TRY
 END TRY
 BEGIN CATCH
 	declare @str as varchar(max);
-	set @str = 'Не получается создать таблицу. Возможно таблица ' + @table_name + ' уже существует. Удалите ее или укажите другое название таблицы!
+	set @str = 'Не получается создать таблицу. Возможно таблица ' + @table_name + ' уже существует. 
+	Удалите ее или укажите другое название таблицы!
 	Для удаления выполните команду: DROP TABLE dbo.[' + @table_name + ']' ;
 	RAISERROR (@str, 16, 1)
 	RETURN 
@@ -57,7 +64,8 @@ BEGIN TRY
 	Create table XMLwithOpenXMLFile ( XmlData xml );
 END TRY
 BEGIN CATCH
-	set @str = 'Не получается создать таблицу. Возможно таблица XMLwithOpenXMLFile уже существует. Удалите ее или укажите другое название таблицы!
+	set @str = 'Не получается создать таблицу. Возможно таблица XMLwithOpenXMLFile уже существует. 
+	Удалите ее или укажите другое название таблицы!
 	Для удаления выполните команду: DROP TABLE dbo.[XMLwithOpenXMLFile]' ;
 	RAISERROR (@str, 16, 1)
 	RETURN 
